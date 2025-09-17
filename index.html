@@ -195,14 +195,16 @@
 
 <!-- Python and ML section  -->
 
-<section class="ml-insights-section">
+<section class="ml-insights-section" id="ml-insights-section">
   <div class="container">
     <!-- Section Title -->
     <h2 class="section-title">Python & ML Insights</h2>
 
-    <!-- 2x2 Grid: Each item has an image + real code block -->
+    <!-- 2x2 Grid: Each item has an image + caption + code block -->
     <div class="grid-items">
+
       <div class="grid-item">
+        <p class="code-caption">Line graph showing how voicemail categories change over time.</p>
         <img src="img/vm_cat_trends.png" alt="Category Trends Over Time" class="interactive-image">
         <pre><code class="python">
 vm["timestamp"] = pd.to_datetime(vm["timestamp"], errors="coerce")
@@ -217,6 +219,7 @@ plt.show()
       </div>
 
       <div class="grid-item">
+        <p class="code-caption">Heatmap showing the distribution of voicemails by region and category.</p>
         <img src="img/heatmap.png" alt="Region vs Category Heatmap" class="interactive-image">
         <pre><code class="python">
 heatmap_data = vm.pivot_table(index="category", columns="region", values="_id", aggfunc="count", fill_value=0)
@@ -228,22 +231,18 @@ plt.show()
       </div>
 
       <div class="grid-item">
+        <p class="code-caption">Scatter plot showing KMeans clustering of voicemails after dimensionality reduction.</p>
         <img src="img/kmeans_cluster.png" alt="Clustering Screenshot" class="interactive-image">
         <pre><code class="python">
 vectorizer = TfidfVectorizer(stop_words="english")
 X_tfidf = vectorizer.fit_transform(vm["text"])
-          
-          
-# KMeans clustering
+
 kmeans = KMeans(n_clusters=4, random_state=42)
 vm["cluster"] = kmeans.fit_predict(X_tfidf)
-          
-          
-# Dimensionality reduction for visualization
+
 pca = PCA(n_components=2, random_state=42)
 X_pca = pca.fit_transform(X_tfidf.toarray())
-          
-          
+
 plt.figure(figsize=(10,6))
 plt.scatter(X_pca[:,0], X_pca[:,1], c=vm["cluster"], cmap="viridis")
 plt.title("KMeans Clusters of Voicemails")
@@ -254,23 +253,18 @@ plt.show()
       </div>
 
       <div class="grid-item">
+        <p class="code-caption">Bar chart showing the number of voicemails per topic based on LDA analysis.</p>
         <img src="img/topic_frequency.png" alt="Topic Distribution Screenshot" class="interactive-image">
         <pre><code class="python">
-# create TF-IDF features
 vectorizer = TfidfVectorizer(stop_words="english", ngram_range=(1,2))
 X_tfidf = vectorizer.fit_transform(vm["text"])
 
-# fit LDA model
 n_topics = 5
 lda = LatentDirichletAllocation(n_components=n_topics, random_state=42)
 lda.fit(X_tfidf)
 
-###[See GitHub for full mapping code where I found the dominant topics]###
-
 vm["topic_label"] = vm["dominant_topic"].map(topic_label_map)
 
-# %%
-# Bar chart: Voicemails by topic
 plt.figure(figsize=(10,5))
 sns.countplot(y="topic_label", data=vm, order=topic_label_map.values())
 plt.title("Number of Voicemails by Topic")
@@ -279,6 +273,7 @@ plt.ylabel("Topic")
 plt.show()
         </code></pre>
       </div>
+
     </div>
   </div>
 </section>
@@ -289,8 +284,9 @@ plt.show()
 
 
 
+
 <!-- Impact Section -->
-<section class="content-section">
+<section class="content-section" id="impact">
   <div class="container">
       <h2 class="section-title">Impact</h2>
       <ul class="impact-grid">

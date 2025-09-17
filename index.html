@@ -165,7 +165,7 @@
 </section>
 
 
-<!-- Insights + 3 Images Section -->
+<!-- Front-end Visual Insights -->
 <section class="content-section" id="text-images-section">
   <div class="container">
     <h2 class="section-title">Creating Front-end Visual Insights</h2>
@@ -202,11 +202,21 @@
     <!-- Section Title -->
     <h2 class="section-title">Python & ML Insights</h2>
 
+    <p class="section-description">
+      Using the same JSON data from MongoDB, I processed it with Python and Pandas
+      and performed exploratory and statistical analysis using Matplotlib and Seaborn. 
+      <br><br>
+      I applied NLP techniques including TF-IDF vectorization, 
+      topic modeling with Latent Dirichlet Allocation (LDA), and clustering with KMeans and PCA. 
+      The results are visualized in interactive charts and heatmaps to uncover trends across 
+      regions, categories, and topics.  <br>
+    ___________________________  </p>
+
     <!-- 2x2 Grid: Each item has an image + caption + code block -->
     <div class="grid-items">
 
       <div class="grid-item">
-        <p class="code-caption">Line graph showing how voicemail categories change over time.</p>
+        <p class="code-caption">Fig 1: Line graph showing how voicemail categories change over time.</p>
         <img src="img/vm_cat_trends.png" alt="Category Trends Over Time" class="interactive-image">
         <pre><code class="python">
 vm["timestamp"] = pd.to_datetime(vm["timestamp"], errors="coerce")
@@ -221,7 +231,7 @@ plt.show()
       </div>
 
       <div class="grid-item">
-        <p class="code-caption">Heatmap showing the distribution of voicemails by region and category.</p>
+        <p class="code-caption">Fig 2: Heatmap showing the distribution of voicemails by region and category.</p>
         <img src="img/heatmap.png" alt="Region vs Category Heatmap" class="interactive-image">
         <pre><code class="python">
 heatmap_data = vm.pivot_table(index="category", columns="region", values="_id", aggfunc="count", fill_value=0)
@@ -233,7 +243,7 @@ plt.show()
       </div>
 
       <div class="grid-item">
-        <p class="code-caption">Scatter plot showing KMeans clustering of voicemails after dimensionality reduction.</p>
+        <p class="code-caption">Fig 3: Scatter plot showing KMeans clustering of voicemails after dimensionality reduction.</p>
         <img src="img/kmeans_cluster.png" alt="Clustering Screenshot" class="interactive-image">
         <pre><code class="python">
 vectorizer = TfidfVectorizer(stop_words="english")
@@ -255,7 +265,7 @@ plt.show()
       </div>
 
       <div class="grid-item">
-        <p class="code-caption">Bar chart showing the number of voicemails per topic based on LDA analysis.</p>
+        <p class="code-caption">Fig 4: Bar chart showing the number of voicemails per topic based on LDA analysis.</p>
         <img src="img/topic_frequency.png" alt="Topic Distribution Screenshot" class="interactive-image">
         <pre><code class="python">
 vectorizer = TfidfVectorizer(stop_words="english", ngram_range=(1,2))

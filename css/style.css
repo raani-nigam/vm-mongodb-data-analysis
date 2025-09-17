@@ -127,6 +127,10 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
+.section-description {
+    margin-bottom: 3rem; 
+}
+
 /* Two columns */
 .two-columns {
     display: flex;
@@ -149,8 +153,7 @@ body {
     color: #4b5563;
     line-height: 1.6;
     max-width: 90%;
-    padding-bottom: 1.4rem; 
-    padding-top: 1.8rem; 
+    padding-bottom: 1.4rem;  
 }
 
 .interactive-image {

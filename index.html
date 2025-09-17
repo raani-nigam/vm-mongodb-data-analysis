@@ -1,12 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Civic Intel Feature Demo</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
+
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<body>
+
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-container">
+      <div class="hero-content">
+          <span class="hero-badge">Portfolio Project</span>
+          <h1 class="hero-title">
+              End-to-End Voicemail Data Pipeline: <br>
+              MongoDB Ingestion, Interactive Frontend Visualization, and Python-Based Analysis
+          </h1>            
+          <p class="hero-cta-text">
+              MongoDB | Python | Pandas | Matplotlib | Scikit-learn | LDA | TF-IDF |
+               JavaScript | React | Vite | Interactive Data Visualization | Webhooks
+          </p>
+          <p class="hero-description">
+              <a href="https://github.com/raani-nigam/vm-mongodb-data-analysis" target="_blank" class="github-link">View on GitHub</a> | By Raani Nigam
+          </p>
+      </div>
+
+      <!-- Table of Contents inside hero -->
+      <div class="toc-section">
+          <h2 class="section-title">Table of Contents</h2>
+          <div class="toc-wrapper">
+              <!-- Left Column: 1-3 -->
+              <ul class="toc-column">
+                  <li><a href="#starting-point">1. The Starting Point: JSON to MongoDB</a></li>
+                  <li><a href="#server-mongodb">2. Connecting server.js to MongoDB</a></li>
+                  <li><a href="#intake-management">3. Intake Management & Pagination Queries</a></li>
+              </ul>
+
+              <!-- Right Column: 4-6 -->
+              <ul class="toc-column">
+                  <li><a href="#text-images-section">4. Creating Front-end Visual Insights</a></li>
+                  <li><a href="#ml-insights-section">5. Python & Machine Learning Insights</a></li>
+                  <li><a href="#impact">6. Impact and Future Applications</a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- Starting point -->
+<section class="content-section" id="starting-point">
+  <div class="container">
+    <h2 class="section-title">The starting point: JSON Objects to MongoDB</h2>
+
+    <div class="two-columns">
+      <!-- Left column -->
+      <div class="column">
+        <p class="image-caption">
+          I had about 68 voicemails that got sent to my inbox. Now I need a way to store and analyze them. 
+          I used n8n automation to parse them, use AI to assign values to keys that I needed filled, 
+          and then I had them sent to my "voicemails" collection in my local MongoDB.
+        </p>
+        <img src="img/json_object.png" alt="JSON example" class="interactive-image">
+      </div>
+
+      <!-- Right column -->
+      <div class="column">
+        <p class="image-caption">
+          I connected to my local MongoDB instance using the mongosh shell. I inspected the voicemails collection 
+          to confirm that all parsed voicemail objects had been ingested correctly. Then, I validated that the
+          collection contained 68 entries. 
+        </p>
+        <img src="img/mongosh_display.png" alt="MongoDB terminal example" class="interactive-image">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Connecting server.js -->
+
+<section class="content-section" id="server-mongodb">
+  <div class="container">
+    <h2 class="section-title">Connecting server.js to MongoDB and displaying instant data upload</h2>
+
+    <!-- Step 1 -->
+    <div class="two-columns step">
+      <div class="column">
+        <p class="image-caption">
+          This code connects a Node.js app to a local MongoDB database using the MongoClient.
+          It opens the civicIntel database and sets up access to the voicemails collection so we can read and write data.  <br>
+          <br>
+          The try/catch block makes sure any connection errors get logged, so we know if something goes wrong.  <br>
+          <br>
+          Basically, it sets up the app to start working with our MongoDB data easily.
+        </p>
+      </div>
+      <div class="column">
+        <img src="img/server_connection.png" alt="Server.js MongoDB connection" class="interactive-image">
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="two-columns step">
+      <div class="column">
+        <p class="image-caption">
+          Next, I performed NoSQL queries to show retrieval using the MongoDB shell and build a front-end display
+          to confirm a smooth connection between the server and the database. 
+        </p>
+      </div>
+      <div class="column">
+        <img src="img/instant_upload.png" alt="NoSQL query example" class="interactive-image">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="content-section" id="intake-management">
+  <div class="container">
+    <h2 class="section-title">Intake Management & Pagination Queries</h2>
+
+    <!-- Step 1: Intake Management Setup -->
+    <div class="two-columns step">
+      <div class="column">
+        <img src="img/intake_endpoint.png" alt="Intake Management Endpoint" class="interactive-image">
+      </div>
+      <div class="column">
+        <p class="image-caption">
+          I built the Intake Management endpoint to efficiently fetch voicemails from the database. 
+          This allowed the frontend to dynamically load data for review without overwhelming the client 
+          or slowing down the interface.
+        </p>
+      </div>
+    </div>
+
+    <!-- Step 2: Pagination & Search -->
+    <div class="two-columns step">
+      <div class="column">
+        <img src="img/pagination_query.png" alt="Pagination Query Example" class="interactive-image">
+      </div>
+      <div class="column">
+        <p class="image-caption">
+          I implemented pagination and search functionality using MongoDB queries. 
+          The API accepts `page`, `limit`, and `search` parameters, returning only the relevant subset of voicemails 
+          and total counts for display in the frontend dashboard.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Insights + 3 Images Section -->
+<section class="content-section" id="text-images-section">
+  <div class="container">
+    <h2 class="section-title">Creating Front-end Visual Insights</h2>
+    <p class="section-description">
+      Built an Insights dashboard using React and Chart.js. Fetched voicemails from a backend API, processed sentiment data, and visualized overall and category-based trends to help analyze feedback efficiently.
+    </p>
+
+    <div class="column">
+      <p class="image-caption">
+        <img src="img/interactive_insights.png" alt="Insights" class="interactive-image">
+      </p>
+    </div>
+
+    <div class="three-images">
+      <div class="image-wrapper">
+        <img src="img/imports_insights.png" alt="imports_insights" class="interactive-image">
+      </div>
+      <div class="image-wrapper">
+        <img src="img/overall_sentiments.png" alt="overall_sentiments" class="interactive-image">
+      </div>
+      <div class="image-wrapper">
+        <img src="img/category_sentiment.png" alt="category_sentiment" class="interactive-image">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Python and ML section  -->
+
+<section class="ml-insights-section">
+  <div class="container">
+    <!-- Section Title -->
+    <h2 class="section-title">Python & ML Insights</h2>
+
+    <!-- 2x2 Grid: Each item has an image + real code block -->
+    <div class="grid-items">
+      <div class="grid-item">
+        <img src="img/vm_cat_trends.png" alt="Category Trends Over Time" class="interactive-image">
+        <pre><code class="python">
+vm["timestamp"] = pd.to_datetime(vm["timestamp"], errors="coerce")
+category_trends = vm.groupby([vm["timestamp"].dt.date, "category"]).size().unstack(fill_value=0)
+category_trends.plot(kind="line", figsize=(12,6))
+plt.title("Voicemail Category Trends Over Time")
+plt.xlabel("Date")
+plt.ylabel("Count")
+plt.legend(title="Category")
+plt.show()
+        </code></pre>
+      </div>
+
+      <div class="grid-item">
+        <img src="img/heatmap.png" alt="Region vs Category Heatmap" class="interactive-image">
+        <pre><code class="python">
+heatmap_data = vm.pivot_table(index="category", columns="region", values="_id", aggfunc="count", fill_value=0)
+plt.figure(figsize=(10,6))
+sns.heatmap(heatmap_data, annot=True, fmt="d", cmap="Blues")
+plt.title("Region vs Category Heatmap")
+plt.show()
+        </code></pre>
+      </div>
+
+      <div class="grid-item">
+        <img src="img/kmeans_cluster.png" alt="Clustering Screenshot" class="interactive-image">
+        <pre><code class="python">
+vectorizer = TfidfVectorizer(stop_words="english")
+X_tfidf = vectorizer.fit_transform(vm["text"])
+          
+          
+# KMeans clustering
+kmeans = KMeans(n_clusters=4, random_state=42)
+vm["cluster"] = kmeans.fit_predict(X_tfidf)
+          
+          
+# Dimensionality reduction for visualization
+pca = PCA(n_components=2, random_state=42)
+X_pca = pca.fit_transform(X_tfidf.toarray())
+          
+          
+plt.figure(figsize=(10,6))
+plt.scatter(X_pca[:,0], X_pca[:,1], c=vm["cluster"], cmap="viridis")
+plt.title("KMeans Clusters of Voicemails")
+plt.xlabel("PCA 1")
+plt.ylabel("PCA 2")
+plt.show()
+        </code></pre>
+      </div>
+
+      <div class="grid-item">
+        <img src="img/topic_frequency.png" alt="Topic Distribution Screenshot" class="interactive-image">
+        <pre><code class="python">
+# create TF-IDF features
+vectorizer = TfidfVectorizer(stop_words="english", ngram_range=(1,2))
+X_tfidf = vectorizer.fit_transform(vm["text"])
+
+# fit LDA model
+n_topics = 5
+lda = LatentDirichletAllocation(n_components=n_topics, random_state=42)
+lda.fit(X_tfidf)
+
+###[See GitHub for full mapping code where I found the dominant topics]###
+
+vm["topic_label"] = vm["dominant_topic"].map(topic_label_map)
+
+# %%
+# Bar chart: Voicemails by topic
+plt.figure(figsize=(10,5))
+sns.countplot(y="topic_label", data=vm, order=topic_label_map.values())
+plt.title("Number of Voicemails by Topic")
+plt.xlabel("Count")
+plt.ylabel("Topic")
+plt.show()
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- Impact Section -->
+<section class="content-section">
+  <div class="container">
+      <h2 class="section-title">Impact</h2>
+      <ul class="impact-grid">
+          <li><span class="highlight">Automatic Parsing:</span> Voicemail inbox pulled and parsed <span class="bold">with a single click</span>, instantly updating dashboards.</li>
+          <li><span class="highlight">Real-Time Analytics:</span> Track constituent issues by <span class="bold">category</span>, <span class="bold">region</span>, and <span class="bold">topic</span> without manual intervention.</li>
+          <li><span class="highlight">Emerging Trends:</span> Policy makers identify urgent concerns as they happen, enabling faster, data-driven responses.</li>
+          <li><span class="highlight">Time Savings:</span> Reduces processing from <span class="bold">hours</span> to <span class="bold">minutes</span>, freeing staff to focus on action.</li>
+          <li><span class="highlight">Scalability:</span> As volume grows, insights continue <span class="bold">updating automatically</span>, demonstrating the power of Python, ML, and modern data pipelines.</li>
+      </ul>
+  </div>
+</section>
+
+
+</body>
 </html>

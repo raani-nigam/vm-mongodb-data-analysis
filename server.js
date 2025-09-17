@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection URI
-const uri = 'mongodb://localhost:27017'; // replace if using Atlas
+const uri = 'mongodb://localhost:27017'; 
 
 // MongoDB client
 const client = new MongoClient(uri);
@@ -20,8 +20,8 @@ let collection;
 async function connectDB() {
   try {
     await client.connect();
-    const db = client.db('civicIntel');       // your database
-    collection = db.collection('voicemails'); // your collection
+    const db = client.db('civicIntel');       
+    collection = db.collection('voicemails');
     console.log('Connected to MongoDB');
   } catch (err) {
     console.error('MongoDB connection error:', err);

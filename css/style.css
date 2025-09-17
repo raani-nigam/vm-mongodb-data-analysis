@@ -346,6 +346,11 @@ body {
     .hero-section .toc-column {
         text-align: center;
     }
+
+    .hero-section {
+        padding-top: 5rem;
+        padding-bottom: 5rem; 
+    }
 }
 
 /* Tablets */
